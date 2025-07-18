@@ -13,4 +13,7 @@ export interface IInputComponent {
   label: string;
   name: string;
   placeholder: string;
+  defaultValue?: string;
+  readonly?: boolean | false;
+  type?: string | "text";
 }

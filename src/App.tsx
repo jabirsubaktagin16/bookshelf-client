@@ -1,5 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router";
+import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Toaster />
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 }

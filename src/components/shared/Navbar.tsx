@@ -1,12 +1,6 @@
-import { ChevronDown, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link } from "react-router";
 import { Button } from "../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 const Navbar = () => {
@@ -21,36 +15,18 @@ const Navbar = () => {
           <Link to="/" className="text-muted-foreground hover:text-foreground">
             Home
           </Link>
-
-          {/* Books Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="text-muted-foreground hover:text-foreground gap-1"
-              >
-                Books <ChevronDown className="w-4 h-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem asChild>
-                <Link to="/books">All Books</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="/books/add">Add Book</a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="/books/categories">Categories</a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <a href="#" className="text-muted-foreground hover:text-foreground">
-            Borrow
-          </a>
-          <a href="#" className="text-muted-foreground hover:text-foreground">
-            About
-          </a>
+          <Link
+            to="/books"
+            className="text-muted-foreground hover:text-foreground"
+          >
+            All Books
+          </Link>
+          <Link
+            to="/borrow-summary"
+            className="text-muted-foreground hover:text-foreground"
+          >
+            Borrow Summary
+          </Link>
         </nav>
 
         {/* Mobile Menu (Sheet) */}

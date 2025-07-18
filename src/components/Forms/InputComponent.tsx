@@ -9,7 +9,14 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 
-const InputComponent = ({ label, name, placeholder }: IInputComponent) => {
+const InputComponent = ({
+  label,
+  name,
+  placeholder,
+  defaultValue,
+  readonly,
+  type,
+}: IInputComponent) => {
   return (
     <div className="grid gap-2">
       <Controller
@@ -21,8 +28,11 @@ const InputComponent = ({ label, name, placeholder }: IInputComponent) => {
               <Input
                 placeholder={placeholder}
                 {...field}
-                value={field.value || ""}
+                value={field.value || defaultValue}
                 className="rounded-none"
+                autoComplete="off"
+                readOnly={readonly}
+                type={type}
               />
             </FormControl>
             <FormDescription />

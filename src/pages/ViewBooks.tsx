@@ -1,4 +1,8 @@
 import AddBookModal from "@/components/modules/Books/AddBookModal";
+import DeleteBookModal from "@/components/modules/Books/DeleteBookModal";
+import UpdateBookModal from "@/components/modules/Books/UpdateBookModal";
+import BorrowModal from "@/components/modules/Borrow/BorrowModal";
+import Loading from "@/components/shared/Loading";
 import {
   Select,
   SelectContent,
@@ -24,8 +28,6 @@ const ViewBooks = () => {
 
   dispatch(setBook(data?.data));
 
-  if (isLoading) return <p>Loading....</p>;
-
   const handleLimitChange = (value: string) => {
     setLimit(Number(value));
     setPage(1); // Reset to first page when limit changes
@@ -33,6 +35,7 @@ const ViewBooks = () => {
 
   return (
     <section>
+      {isLoading && <Loading />}
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="space-y-4 md:space-y-8">
           <div className="max-w-xl">
@@ -80,7 +83,9 @@ const ViewBooks = () => {
                   <th className="px-3 py-2 whitespace-nowrap">ISBN</th>
                   <th className="px-3 py-2 whitespace-nowrap">Copies</th>
                   <th className="px-3 py-2 whitespace-nowrap">Availability</th>
-                  <th className="px-3 py-2 whitespace-nowrap">Actions</th>
+                  <th className="px-3 py-2 whitespace-nowrap text-center">
+                    Actions
+                  </th>
                 </tr>
               </thead>
 
@@ -103,7 +108,11 @@ const ViewBooks = () => {
                     <td className="px-3 py-2 whitespace-nowrap">
                       {book.available ? "Available" : "Not Available"}
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">$0</td>
+                    <td className="px-3 flex gap-2 py-2 text-center whitespace-nowrap">
+                      <BorrowModal book={book} />
+                      <DeleteBookModal bookId={book.id} />
+                      <UpdateBookModal book={book} />
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -9,7 +9,12 @@ import {
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
 
-const TextAreaComponent = ({ name, label, placeholder }: IInputComponent) => {
+const TextAreaComponent = ({
+  name,
+  label,
+  placeholder,
+  defaultValue,
+}: IInputComponent) => {
   return (
     <div className="grid gap-2">
       <Controller
@@ -20,8 +25,10 @@ const TextAreaComponent = ({ name, label, placeholder }: IInputComponent) => {
             <FormControl>
               <Textarea
                 placeholder={placeholder}
-                className="resize-none"
+                className="resize-none rounded-none"
                 {...field}
+                value={field.value || defaultValue}
+                autoComplete="off"
               />
             </FormControl>
             <FormDescription />

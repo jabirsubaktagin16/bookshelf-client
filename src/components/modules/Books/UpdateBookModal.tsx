@@ -27,17 +27,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAddBookMutation } from "@/redux/api/baseApi";
+import { useUpdateBookMutation } from "@/redux/api/baseApi";
+import type { IBook } from "@/types/types";
 import { genreOptions } from "@/utils/constant";
+import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
-const AddBookModal = () => {
+const UpdateBookModal = ({ book }: { book: IBook }) => {
   const [open, setOpen] = useState(false);
   const form = useForm();
 
-  const [addBook, { data }] = useAddBookMutation();
+  const [updateBook, { data }] = useUpdateBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.copies < 0) {
@@ -48,9 +50,9 @@ const AddBookModal = () => {
         available: data.copies === 0 ? false : true,
       };
 
-      addBook(bookData);
+      updateBook({ id: book.id, data: bookData });
 
-      toast.success("Book Added Successfully");
+      toast.success("Book Updated Successfully");
 
       setOpen(false);
       form.reset();
@@ -61,11 +63,13 @@ const AddBookModal = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button variant="default">Add New Book</Button>
+          <Button className="rounded-none" size="icon" variant="default">
+            <Pencil />
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add a New Book</DialogTitle>
+            <DialogTitle>Update Book</DialogTitle>
             <DialogDescription />
           </DialogHeader>
           <Form {...form}>
@@ -75,11 +79,13 @@ const AddBookModal = () => {
                   name="title"
                   label="Title"
                   placeholder="Enter Book Title"
+                  defaultValue={book.title}
                 />
                 <InputComponent
                   name="author"
                   label="Author"
                   placeholder="Enter Book Author"
+                  defaultValue={book.author}
                 />
                 <FormField
                   name="genre"
@@ -88,7 +94,7 @@ const AddBookModal = () => {
                       <FormLabel>Genre</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={book.genre}
                       >
                         <FormControl>
                           <SelectTrigger className="w-full rounded-none">
@@ -113,17 +119,20 @@ const AddBookModal = () => {
                   name="isbn"
                   label="ISBN"
                   placeholder="Enter Book ISBN"
+                  defaultValue={book.isbn}
                 />
                 <InputComponent
                   name="copies"
                   label="Copies"
                   placeholder="Enter Book Copies"
+                  defaultValue={book.copies.toString()}
                   type="number"
                 />
                 <TextAreaComponent
                   name="description"
                   label="Description"
                   placeholder="Enter Book Description"
+                  defaultValue={book.description}
                 />
               </div>
 
@@ -141,4 +150,4 @@ const AddBookModal = () => {
   );
 };
 
-export default AddBookModal;
+export default UpdateBookModal;
