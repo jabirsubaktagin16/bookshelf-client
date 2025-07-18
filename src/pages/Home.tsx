@@ -1,3 +1,7 @@
+import BookCard from "@/components/BookCard";
+import Loading from "@/components/shared/Loading";
+import { useGetBooksQuery } from "@/redux/api/baseApi";
+import type { IBook } from "@/types/types";
 import { Link } from "react-router";
 import biography from "../assets/genre/biography.png";
 import fantasy from "../assets/genre/fantasy.png";
@@ -8,8 +12,11 @@ import science from "../assets/genre/science.png";
 import hero from "../assets/hero.png";
 
 const Home = () => {
+  const { data, isLoading } = useGetBooksQuery({ page: 1, limit: 6 });
+
   return (
     <>
+      {isLoading && <Loading />}
       <section className="lg:grid lg:place-content-center">
         <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-32">
           <div className="max-w-prose text-left">
@@ -78,6 +85,39 @@ const Home = () => {
             <h6 className="text-xl mt-4 text-gray-700">Fantasy</h6>
           </div>
         </div>
+      </div>
+      <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 ">
+        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl text-center">
+          <strong className="text-primary">Library</strong> Highlights
+        </h1>
+
+        <p className="my-8 text-base text-pretty text-center text-gray-700 sm:text-lg/relaxed">
+          Discover a selection of all available books in the library. From
+          fiction to science, browse through the full collection and see what
+          catches your eye. Organized, up-to-date, and ready to explore — right
+          from your home page.
+        </p>
+        {data?.data?.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+              {data?.data?.map((book: IBook) => (
+                <BookCard book={book} key={book.id} />
+              ))}
+            </div>
+            <div className="mt-4 text-center">
+              <Link
+                className="group relative inline-block focus:ring-3 focus:outline-hidden"
+                to="/books"
+              >
+                <span className="absolute inset-0 translate-x-0 translate-y-0 bg-primary transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></span>
+
+                <span className="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold tracking-widest uppercase">
+                  View All Books
+                </span>
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

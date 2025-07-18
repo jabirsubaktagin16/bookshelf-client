@@ -19,12 +19,15 @@ import { Book } from "lucide-react";
 import { useState } from "react";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const BorrowModal = ({ book }: { book: IBook }) => {
   const [open, setOpen] = useState(false);
   const form = useForm();
 
-  const [borrowBook, { data }] = useBorrowABookMutation();
+  const navigate = useNavigate();
+
+  const [borrowBook] = useBorrowABookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.quantity < 0) {
@@ -44,6 +47,8 @@ const BorrowModal = ({ book }: { book: IBook }) => {
 
       setOpen(false);
       form.reset();
+
+      navigate("/borrow-summary");
     }
   };
 

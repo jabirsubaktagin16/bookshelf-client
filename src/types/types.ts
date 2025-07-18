@@ -9,6 +9,14 @@ export interface IBook {
   available: boolean | true;
 }
 
+export interface IBorrowSummary {
+  totalQuantity: number;
+  book: {
+    title: string;
+    isbn: string;
+  };
+}
+
 export interface IInputComponent {
   label: string;
   name: string;

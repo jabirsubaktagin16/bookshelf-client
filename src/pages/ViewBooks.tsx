@@ -13,8 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
-import { setBook } from "@/redux/features/book/bookSlice";
-import { useAppDispatch } from "@/redux/hooks";
 import type { IBook } from "@/types/types";
 import { useState } from "react";
 
@@ -23,10 +21,6 @@ const ViewBooks = () => {
   const [limit, setLimit] = useState(10);
 
   const { data, isLoading, error } = useGetBooksQuery({ page, limit });
-
-  const dispatch = useAppDispatch();
-
-  dispatch(setBook(data?.data));
 
   const handleLimitChange = (value: string) => {
     setLimit(Number(value));

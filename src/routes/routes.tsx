@@ -1,4 +1,5 @@
 import App from "@/App";
+import BorrowSummary from "@/pages/BorrowSummary";
 import Home from "@/pages/Home";
 import ViewBooks from "@/pages/ViewBooks";
 import { createBrowserRouter } from "react-router";
@@ -13,15 +14,13 @@ export const routes = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-    ],
-  },
-  {
-    path: "/books",
-    element: <App />,
-    children: [
       {
-        path: "",
+        path: "books",
         element: <ViewBooks />,
+      },
+      {
+        path: "borrow-summary",
+        element: <BorrowSummary />,
       },
     ],
   },

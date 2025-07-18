@@ -28,11 +28,11 @@ const InputComponent = ({
               <Input
                 placeholder={placeholder}
                 {...field}
-                value={field.value || defaultValue}
                 className="rounded-none"
                 autoComplete="off"
                 readOnly={readonly}
                 type={type}
+                defaultValue={defaultValue}
               />
             </FormControl>
             <FormDescription />
