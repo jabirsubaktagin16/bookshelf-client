@@ -21,7 +21,7 @@ const ViewBooks = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const { data, isLoading, error } = useGetBooksQuery({ page, limit });
+  const { data, isLoading } = useGetBooksQuery({ page, limit });
 
   const handleLimitChange = (value: string) => {
     setLimit(Number(value));
