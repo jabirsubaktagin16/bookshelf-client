@@ -1,4 +1,5 @@
 import App from "@/App";
+import BookDetails from "@/pages/BookDetails";
 import BorrowSummary from "@/pages/BorrowSummary";
 import Home from "@/pages/Home";
 import ViewBooks from "@/pages/ViewBooks";
@@ -15,12 +16,22 @@ export const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "books",
+        path: "borrow-summary",
+        element: <BorrowSummary />,
+      },
+    ],
+  },
+  {
+    path: "/books",
+    element: <App />,
+    children: [
+      {
+        path: "",
         element: <ViewBooks />,
       },
       {
-        path: "borrow-summary",
-        element: <BorrowSummary />,
+        path: ":id",
+        element: <BookDetails />,
       },
     ],
   },

@@ -21,7 +21,13 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
-const BorrowModal = ({ book }: { book: IBook }) => {
+const BorrowModal = ({
+  book,
+  detailedView,
+}: {
+  book: IBook;
+  detailedView?: boolean;
+}) => {
   const [open, setOpen] = useState(false);
   const form = useForm();
 
@@ -32,11 +38,11 @@ const BorrowModal = ({ book }: { book: IBook }) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.quantity < 0) {
       toast.error("Quantity must be a positive number");
-    } else if (data.quantity > book.copies) {
+    } else if (data.quantity > book?.copies) {
       toast.error("Not enough copies available");
     } else {
       const borrowData = {
-        book: book.id,
+        book: book?.id,
         quantity: data.quantity,
         dueDate: data.dueDate,
       };
@@ -57,12 +63,11 @@ const BorrowModal = ({ book }: { book: IBook }) => {
       <form>
         <DialogTrigger asChild>
           <Button
-            size="icon"
             className="rounded-none cursor-pointer"
             variant="secondary"
-            disabled={!book.available}
+            disabled={!book?.available}
           >
-            <Book />
+            <Book /> {detailedView ? "Borrow This Book" : ""}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -77,7 +82,7 @@ const BorrowModal = ({ book }: { book: IBook }) => {
                   name="title"
                   label="Title"
                   placeholder="Enter Book Title"
-                  defaultValue={book.title}
+                  defaultValue={book?.title}
                   readonly={true}
                 />
 

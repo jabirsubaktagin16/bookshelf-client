@@ -15,6 +15,7 @@ import {
 import { useGetBooksQuery } from "@/redux/api/baseApi";
 import type { IBook } from "@/types/types";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const ViewBooks = () => {
   const [page, setPage] = useState(1);
@@ -85,9 +86,17 @@ const ViewBooks = () => {
 
               <tbody className="divide-y divide-gray-200">
                 {data?.data.map((book: IBook) => (
-                  <tr className="*:text-gray-900 *:first:font-medium">
+                  <tr
+                    key={book.id}
+                    className="*:text-gray-900 *:first:font-medium"
+                  >
                     <td className="px-3 py-2 whitespace-nowrap">
-                      {book.title}
+                      <Link
+                        className="hover:underline"
+                        to={`/books/${book.id}`}
+                      >
+                        {book.title}
+                      </Link>
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap">
                       {book.author}
@@ -112,22 +121,24 @@ const ViewBooks = () => {
               </tbody>
             </table>
           </div>
-          <div className="flex items-center gap-4 mt-4">
-            <button
-              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-              disabled={page === 1}
-              onClick={() => setPage((p) => p - 1)}
-            >
-              Previous
-            </button>
-            <span className="text-sm">Page {page}</span>
-            <button
-              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-              disabled={data?.data?.length < limit}
-              onClick={() => setPage((p) => p + 1)}
-            >
-              Next
-            </button>
+          <div className="flex justify-center">
+            <div className="flex items-center gap-4 mt-4">
+              <button
+                className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                disabled={page === 1}
+                onClick={() => setPage((p) => p - 1)}
+              >
+                Previous
+              </button>
+              <span className="text-sm">Page {page}</span>
+              <button
+                className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                disabled={data?.data?.length < limit}
+                onClick={() => setPage((p) => p + 1)}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>

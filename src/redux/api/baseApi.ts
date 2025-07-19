@@ -11,6 +11,10 @@ export const baseApi = createApi({
       query: ({ page = 1, limit = 10 }) => `/books?page=${page}&limit=${limit}`,
       providesTags: ["book"],
     }),
+    getBookDetails: builder.query({
+      query: (id) => `/books/${id}`,
+      providesTags: ["book"],
+    }),
     addBook: builder.mutation({
       query: (data) => ({
         url: "/books",
@@ -51,6 +55,7 @@ export const baseApi = createApi({
 
 export const {
   useGetBooksQuery,
+  useGetBookDetailsQuery,
   useAddBookMutation,
   useDeleteBookMutation,
   useUpdateBookMutation,

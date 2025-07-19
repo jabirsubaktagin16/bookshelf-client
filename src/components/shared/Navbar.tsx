@@ -1,14 +1,23 @@
 import { Menu } from "lucide-react";
 import { Link } from "react-router";
+import logo from "../../assets/logo.png";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 const Navbar = () => {
   return (
-    <header className="w-full">
+    <header className="w-full my-2">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <div className="text-lg font-semibold text-primary">BookShelf</div>
+        <div className="text-lg font-semibold text-primary">
+          <Link to="/">
+            <img
+              src={logo}
+              alt="BookShelf Logo"
+              className="w-full h-16 object-cover"
+            />
+          </Link>
+        </div>
 
         {/* Desktop Nav Links with Dropdown */}
         <nav className="hidden gap-6 text-sm font-medium md:flex items-center">

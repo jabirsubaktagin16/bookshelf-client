@@ -29,11 +29,9 @@ BookShelf is a simple, responsive, and user-friendly Library Management System t
 ## 🧪 Getting Started
 
 ```
-
-#Install dependencies
+# Install dependencies
 npm install
 
-#Start development server
+# Start development server
 npm run dev
-
 ```

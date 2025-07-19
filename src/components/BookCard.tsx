@@ -1,4 +1,5 @@
 import type { IBook } from "@/types/types";
+import { Link } from "react-router";
 
 const BookCard = ({ book }: { book: IBook }) => {
   return (
@@ -10,11 +11,11 @@ const BookCard = ({ book }: { book: IBook }) => {
       </div>
 
       <div className="mb-4">
-        <a href="#" className="hover:underline">
+        <Link to={`/books/${book.id}`} className="hover:underline">
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">
             {book.title}
           </h3>
-        </a>
+        </Link>
       </div>
       <p className="block text-xs text-gray-500">
         by <strong>{book.author}</strong>
