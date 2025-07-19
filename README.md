@@ -1,69 +1,38 @@
-# React + TypeScript + Vite
+# 📚 BookShelf — Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookShelf is a simple, responsive, and user-friendly Library Management System that helps you manage book records and borrowing operations effectively. BookShelf, built with current tools like as React, Tailwind CSS, and shadcn/ui, is perfect for small libraries, academic institutions, and personal usage.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **View All Books**
+  Clean, organized listing of all available books with genres and key details.
 
-## Expanding the ESLint configuration
+- **View Details of A Book**
+  Key Details like-title, author, genre, isbn, description etc. of a book can be viewed.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Add New Book**
+  Add New Book with information such as-title, genre, author, isbn etc.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Borrow Summary Page**
+  A centralized page to view current borrowing records, due dates, and statuses.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend:** React, Tailwind CSS, shadcn/ui
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Backend:** ExpressJS, MongoDB
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **UI Components:** Radix UI primitives via shadcn
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Routing & State (optional):** React Router, Redux Toolkit
+
+## 🧪 Getting Started
+
+``
+#Install dependencies
+npm install
+
+#Start development server
+npm run dev
+
+``
