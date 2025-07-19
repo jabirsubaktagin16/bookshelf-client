@@ -21,7 +21,7 @@ interface IProps {
 
 const DeleteBookModal = ({ bookId }: IProps) => {
   const [open, setOpen] = useState(false);
-  const [deleteBook, { data }] = useDeleteBookMutation();
+  const [deleteBook] = useDeleteBookMutation();
 
   const handleDelete = () => {
     deleteBook(bookId);

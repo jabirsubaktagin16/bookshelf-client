@@ -39,7 +39,7 @@ const UpdateBookModal = ({ book }: { book: IBook }) => {
   const [open, setOpen] = useState(false);
   const form = useForm();
 
-  const [updateBook, { data }] = useUpdateBookMutation();
+  const [updateBook] = useUpdateBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (data.copies < 0) {
