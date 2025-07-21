@@ -24,4 +24,5 @@ export interface IInputComponent {
   defaultValue?: string;
   readonly?: boolean | false;
   type?: string | "text";
+  required?: boolean | false;
 }

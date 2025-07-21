@@ -80,12 +80,14 @@ const UpdateBookModal = ({ book }: { book: IBook }) => {
                   label="Title"
                   placeholder="Enter Book Title"
                   defaultValue={book.title}
+                  required={true}
                 />
                 <InputComponent
                   name="author"
                   label="Author"
                   placeholder="Enter Book Author"
                   defaultValue={book.author}
+                  required={true}
                 />
                 <FormField
                   name="genre"
@@ -95,6 +97,7 @@ const UpdateBookModal = ({ book }: { book: IBook }) => {
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={book.genre}
+                        required
                       >
                         <FormControl>
                           <SelectTrigger className="w-full rounded-none">
@@ -120,6 +123,7 @@ const UpdateBookModal = ({ book }: { book: IBook }) => {
                   label="ISBN"
                   placeholder="Enter Book ISBN"
                   defaultValue={book.isbn}
+                  required={true}
                 />
                 <InputComponent
                   name="copies"
@@ -127,6 +131,7 @@ const UpdateBookModal = ({ book }: { book: IBook }) => {
                   placeholder="Enter Book Copies"
                   defaultValue={book.copies.toString()}
                   type="number"
+                  required={true}
                 />
                 <TextAreaComponent
                   name="description"

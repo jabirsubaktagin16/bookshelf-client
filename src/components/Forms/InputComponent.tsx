@@ -16,6 +16,7 @@ const InputComponent = ({
   defaultValue,
   readonly,
   type,
+  required,
 }: IInputComponent) => {
   return (
     <div className="grid gap-2">
@@ -33,6 +34,7 @@ const InputComponent = ({
                 readOnly={readonly}
                 type={type}
                 defaultValue={defaultValue}
+                required={required}
               />
             </FormControl>
             <FormDescription />

@@ -39,7 +39,7 @@ const AddBookModal = () => {
 
   const [addBook] = useAddBookMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (data.copies < 0) {
       toast.error("Copies must be a positive number");
     } else {
@@ -48,12 +48,18 @@ const AddBookModal = () => {
         available: data.copies === 0 ? false : true,
       };
 
-      addBook(bookData);
+      const response = await addBook(bookData);
 
-      toast.success("Book Added Successfully");
+      console.log(response);
 
-      setOpen(false);
-      form.reset();
+      if (response?.error) {
+        toast.error("Failed to add Book. Please check all inputs and resubmit");
+      } else {
+        toast.success("Book Added Successfully");
+
+        setOpen(false);
+        form.reset();
+      }
     }
   };
 
@@ -75,11 +81,13 @@ const AddBookModal = () => {
                   name="title"
                   label="Title"
                   placeholder="Enter Book Title"
+                  required={true}
                 />
                 <InputComponent
                   name="author"
                   label="Author"
                   placeholder="Enter Book Author"
+                  required={true}
                 />
                 <FormField
                   name="genre"
@@ -89,6 +97,7 @@ const AddBookModal = () => {
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
+                        required
                       >
                         <FormControl>
                           <SelectTrigger className="w-full rounded-none">
@@ -113,12 +122,14 @@ const AddBookModal = () => {
                   name="isbn"
                   label="ISBN"
                   placeholder="Enter Book ISBN"
+                  required={true}
                 />
                 <InputComponent
                   name="copies"
                   label="Copies"
                   placeholder="Enter Book Copies"
                   type="number"
+                  required={true}
                 />
                 <TextAreaComponent
                   name="description"
